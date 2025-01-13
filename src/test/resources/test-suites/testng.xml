@@ -1,0 +1,9 @@
+<suite name="Test Suite">
+    <test name="DemoTest">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="environment" value="qa"/>
+        <classes>
+            <class name="Mailfence"/>
+        </classes>
+    </test>
+</suite>
