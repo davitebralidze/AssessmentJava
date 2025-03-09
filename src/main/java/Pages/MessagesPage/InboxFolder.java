@@ -16,7 +16,7 @@ public class InboxFolder {
         this.driver = driver;
         this.messagesPage = messagesPage;
         optionsDropdownButtonOfTheAttachmentOfTheReceivedMessage = new ButtonElement(driver, By.cssSelector("b.icon-Arrow-down"));
-        saveInDocumentsButtonOfTheDropdown = new ButtonElement(driver, By.xpath("/html/body/div[5]/div/ul/li[3]/a"));
+        saveInDocumentsButtonOfTheDropdown = new ButtonElement(driver, By.xpath("//div[5]/div/ul/li[normalize-space(.)='Save in Documents']"));
         folderSelectionPopup = new FolderSelectionPopup(driver);
     }
 
