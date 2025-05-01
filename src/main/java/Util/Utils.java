@@ -13,7 +13,6 @@ public class Utils {
         if (folderToDelete.exists()) {
             try {
                 deleteFolder(folderToDelete);
-                System.out.println("Allure reports cleared successfully.");
             } catch (SecurityException ignored) {
             }
         }
