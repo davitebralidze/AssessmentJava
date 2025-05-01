@@ -1,6 +1,9 @@
 package WebDriverManager;
 
 import Util.PropertyLoader;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -81,5 +84,10 @@ public class WebDriverManager {
             tlDriver.get().quit();
             tlDriver.remove();
         }
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png")
+    public static byte[] takeScreenshot() {
+        return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }

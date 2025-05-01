@@ -1,4 +1,7 @@
 <suite name="Test Suite">
+    <listeners>
+        <listener class-name="Util.Listeners"/>
+    </listeners>
     <test name="DemoTest">
         <classes>
             <class name="Mailfence"/>

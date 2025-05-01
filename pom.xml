@@ -14,11 +14,13 @@
         <webdriver.manager.version>5.9.2</webdriver.manager.version>
         <testng.version>7.10.2</testng.version>
         <allure.version>2.29.1</allure.version>
+        <faker.version>1.0.2</faker.version>
 
         <!-- Plugin versions -->
         <maven.compiler.version>3.12.1</maven.compiler.version>
         <maven-surfire.version>2.20</maven-surfire.version>
         <allure-maven.version>2.15.2</allure-maven.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
     </properties>
 
     <dependencies>
@@ -33,14 +35,13 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.22</version>
-            <scope>compile</scope>
+            <version>${aspectj.version}</version>
         </dependency>
 
         <dependency>
@@ -59,7 +60,7 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <version>${faker.version}</version>
         </dependency>
 
     </dependencies>
@@ -71,8 +72,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
 
@@ -82,19 +83,13 @@
                 <version>${maven-surfire.version}</version>
                 <configuration>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
                         <suiteXmlFile>${project.basedir}/src/test/resources/test-suites/${suiteFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure-maven.version}</version>
             </plugin>
         </plugins>
     </build>
