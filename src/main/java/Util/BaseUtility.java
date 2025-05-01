@@ -1,6 +1,9 @@
 package Util;
 
 import WebDriverManager.WebDriverManager;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
@@ -15,9 +18,14 @@ public class BaseUtility {
 
     private static final Logger log = LoggerFactory.getLogger(BaseUtility.class);
 
+    @Attachment(value = "Screenshot", type = "image/png")
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+
     @BeforeSuite
     public void allureCleaner() {
-        Utils.deleteAllureReports();
+//        Utils.deleteAllureReports();
     }
 
     @BeforeMethod()
