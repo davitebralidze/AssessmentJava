@@ -26,11 +26,6 @@ public class BaseUtility {
 
     @AfterMethod
     public void tearDown() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         WebDriverManager.quitBrowser();
     }
 }

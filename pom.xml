@@ -15,6 +15,9 @@
         <testng.version>7.10.2</testng.version>
         <allure.version>2.29.1</allure.version>
         <faker.version>1.0.2</faker.version>
+        <itextpdf.version>9.1.0</itextpdf.version>
+        <apache-poi.version>5.4.0</apache-poi.version>
+        <dotenv.version>5.2.2</dotenv.version>
 
         <!-- Plugin versions -->
         <maven.compiler.version>3.12.1</maven.compiler.version>
@@ -61,6 +64,25 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${faker.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>${itextpdf.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>${dotenv.version}</version>
         </dependency>
 
     </dependencies>
