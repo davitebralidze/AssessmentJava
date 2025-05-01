@@ -2,22 +2,16 @@ package PageCommonComponents;
 
 import ElementWrappers.ButtonElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class HeaderBar {
-    ButtonElement messagesButton;
-    ButtonElement documentsButton;
+    static ButtonElement messagesButton = new ButtonElement(By.id("nav-mail"), "Messages Button");
+    static ButtonElement documentsButton = new ButtonElement(By.id("nav-docs"), "Documents Button");
 
-    public HeaderBar(WebDriver driver) {
-        messagesButton = new ButtonElement(driver, By.id("nav-mail"), "Messages Button");
-        documentsButton = new ButtonElement(driver, By.id("nav-docs"), "Documents Button");
-    }
-
-    public void clickOnMessagesButton() {
+    public static void clickOnMessagesButton() {
         messagesButton.click();
     }
 
-    public void clickOnDocumentsButton() {
+    public static void clickOnDocumentsButton() {
         documentsButton.click();
     }
 

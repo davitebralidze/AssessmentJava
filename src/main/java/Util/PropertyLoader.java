@@ -3,34 +3,32 @@ package Util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class PropertyLoader {
-    private final String environment;
+    static Properties properties = new Properties();
+    final static String configFilePath = "config.properties";
+    final static ClassLoader classLoader = PropertyLoader.class.getClassLoader();
 
-    public PropertyLoader(String environment) {
-        this.environment = environment;
-    }
+    static {
 
-    public String returnConfigValue(final String property) {
-        Logger logger = Logger.getLogger(PropertyLoader.class.getName());
-        String direction = "data-qa.properties";
-        switch (environment) {
-            case "qa" -> direction = "env-properties/qa-env.properties";
-            case "uat" -> direction = "env-properties/uat-env.properties";
-            case "live" -> direction = "env-properties/live-env.properties";
-            default -> {
-                logger.severe("Such environment does not exist");
-                System.exit(0);
-            }
-        }
-        Properties properties = new Properties();
-        try (InputStream propFileInpStream = PropertyLoader.class.getClassLoader().getResourceAsStream(direction)) {
-            properties.load(propFileInpStream);
-            return properties.getProperty(property);
+        try (InputStream configInputStream = classLoader.getResourceAsStream(configFilePath)) {
+            properties.load(configInputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return property;
+
+        String environment = (String) properties.get("ENVIRONMENT");
+        String direction = String.format("env-properties/%s-env.properties", environment);
+
+        try (InputStream propFileInpStream = classLoader.getResourceAsStream(direction)) {
+            properties.load(propFileInpStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public static String getProperty(String propertyName) {
+        return properties.getProperty(propertyName);
+    }
+
 }

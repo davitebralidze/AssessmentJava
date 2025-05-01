@@ -27,6 +27,12 @@
             <version>${selenium.java.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.22</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>

@@ -1,23 +1,30 @@
 import PageCommonComponents.HeaderBar;
+import Pages.LandingPage.LandingPage;
+import Pages.LoginPage.LogInPage;
+import Pages.MessagesPage.InboxFolder;
+import Pages.MessagesPage.MessagesPage;
 import Util.BaseUtility;
+import Util.PropertyLoader;
+import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
+
+import java.io.File;
 
 public class Mailfence extends BaseUtility {
 
     @Test
     public void uploadFile() {
-        String subject = faker.lorem().characters(10);
+        String subject = Faker.instance().lorem().characters(10);
 
-        landingPage.clickOnSignInButton();
-        logInPage.logIn(propertyLoader.returnConfigValue("userEmail"), propertyLoader.returnConfigValue("password"));
-        logInPage.waitForUserToBeLoggedIn();
-        messagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
-        messagesPage.clickOnNewMessageButton();
-        messagesPage.sendEmail(propertyLoader.returnConfigValue("userEmail"), subject, "C:\\Users\\davit.ebralidze\\IdeaProjects\\Mailfence\\checkme.pdf");
-        messagesPage.inboxFolder.waitForTheMessageInInbox(subject);
-        messagesPage.inboxFolder.openTheMessage(subject);
-        messagesPage.inboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments("checkme");
-        messagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
+        LandingPage.clickOnSignInButton();
+        LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
+        LogInPage.waitForUserToBeLoggedIn();
+        MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
+        MessagesPage.clickOnNewMessageButton();
+        MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, System.getProperty("user.dir")+ File.separator+"checkme.pdf");
+        InboxFolder.waitForTheMessageInInbox(subject);
+        InboxFolder.openTheMessage(subject);
+        InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments("checkme");
+        MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
     }
-
 }

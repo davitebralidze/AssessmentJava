@@ -2,24 +2,17 @@ package Pages.MessagesPage;
 
 import ElementWrappers.ButtonElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class FolderSelectionPopup {
 
-    ButtonElement myDocumentsButtonInPopup;
-    ButtonElement saveButtonOnTheFoldersPopup;
+    static ButtonElement myDocumentsButtonInPopup = new ButtonElement(By.xpath("//*[@id=\"gwt-uid-68@538837161\"]/div[1]/div[2]"));
+    static ButtonElement saveButtonOnTheFoldersPopup = new ButtonElement(By.xpath("//div[@class='btn GCSDBRWBO defaultBtn']"));
 
-    public FolderSelectionPopup(WebDriver driver) {
-        myDocumentsButtonInPopup = new ButtonElement(driver, By.xpath("//*[@id=\"gwt-uid-68@538837161\"]/div[1]/div[2]"));
-        saveButtonOnTheFoldersPopup = new ButtonElement(driver, By.xpath("//div[@class='btn GCSDBRWBO defaultBtn']"));
-    }
-
-    public void clickOnMyDocuments() {
+    public static void clickOnMyDocuments() {
         myDocumentsButtonInPopup.click();
     }
 
-    public void clickOnSaveButton() {
-
+    public static void clickOnSaveButton() {
         saveButtonOnTheFoldersPopup.click();
     }
 }

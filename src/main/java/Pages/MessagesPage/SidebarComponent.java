@@ -2,21 +2,16 @@ package Pages.MessagesPage;
 
 import ElementWrappers.ButtonElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class SidebarComponent {
 
-    ButtonElement inboxButton;
+    static ButtonElement inboxButton = new ButtonElement(By.id("treeInbox"), "Inbox folder button");
 
-    public SidebarComponent(WebDriver driver) {
-        inboxButton = new ButtonElement(driver, By.id("treeInbox"), "Inbox folder button");
-    }
-
-    public void clickOnInboxButton() {
+    public static void clickOnInboxButton() {
         inboxButton.click();
     }
 
-    public void navigateTo(Pages pageName) {
+    public static void navigateTo(Pages pageName) {
         switch (pageName) {
             case INBOX -> clickOnInboxButton();
             default ->

@@ -4,42 +4,33 @@ import ElementWrappers.BaseElement;
 import ElementWrappers.ButtonElement;
 import ElementWrappers.InputElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class LogInPage {
-    InputElement username;
-    InputElement password;
-    ButtonElement enterButton;
-    BaseElement logInSpinner;
+    static InputElement username = new InputElement(By.id("UserID"), "Username input field");
+    static InputElement password = new InputElement(By.id("Password"), "Password");
+    static ButtonElement enterButton = new ButtonElement(By.className("btn"), "Enter button");
+    static BaseElement logInSpinner = new BaseElement(By.className("progress"));
 
-    public LogInPage(WebDriver driver) {
-        username = new InputElement(driver, By.id("UserID"), "Username input field");
-        password = new InputElement(driver, By.id("Password"), "Password");
-        enterButton = new ButtonElement(driver, By.className("btn"), "Enter button");
-        logInSpinner = new BaseElement(driver, By.className("progress"));
-    }
-
-    public void logIn(String email, String password) {
+    public static void logIn(String email, String password) {
         fillUsernameField(email);
         fillPasswordField(password);
         clickOnEnterButton();
-
         //assert the messages page to be opened
     }
 
-    public void fillUsernameField(String text) {
+    public static void fillUsernameField(String text) {
         username.fill(text);
     }
 
-    public void fillPasswordField(String text) {
+    public static void fillPasswordField(String text) {
         password.fill(text);
     }
 
-    public void clickOnEnterButton() {
+    public static void clickOnEnterButton() {
         enterButton.click();
     }
 
-    public void waitForUserToBeLoggedIn() {
+    public static void waitForUserToBeLoggedIn() {
         logInSpinner.waitElementInvisibility();
     }
 }
