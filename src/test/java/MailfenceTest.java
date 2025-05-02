@@ -13,24 +13,22 @@ public class MailfenceTest extends BaseUtility {
 
     @Test
     public void uploadFile() {
-//        String subject = Faker.instance().lorem().characters(10);
-//        DummyFile dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
-//        dummyFile.createLoremIpsumFile();
-//        try {
-//            LandingPage.clickOnSignInButton();
-//            LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
-//            LogInPage.waitForUserToBeLoggedIn();
-//            MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
-//            MessagesPage.clickOnNewMessageButton();
-//            MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
-//            InboxFolder.waitForTheMessageInInbox(subject);
-//            InboxFolder.openTheMessage(subject);
-//            InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
-//            MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
-//        } finally {
-//            dummyFile.deleteFile();
-//        }
-        Assert.assertEquals(true, false);
+        String subject = Faker.instance().lorem().characters(10);
+        DummyFile dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
+        dummyFile.createLoremIpsumFile();
+        try {
+            LandingPage.clickOnSignInButton();
+            LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
+            LogInPage.waitForUserToBeLoggedIn();
+            MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
+            MessagesPage.clickOnNewMessageButton();
+            MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
+            InboxFolder.waitForTheMessageInInbox(subject);
+            InboxFolder.openTheMessage(subject);
+            InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
+            MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
+        } finally {
+            dummyFile.deleteFile();
+        }
     }
-
 }
