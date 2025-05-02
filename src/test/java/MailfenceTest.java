@@ -30,7 +30,7 @@ public class MailfenceTest extends BaseUtility {
 //        } finally {
 //            dummyFile.deleteFile();
 //        }
-        Assert.assertTrue(false);
+        Assert.assertEquals(true, false);
     }
 
 }

@@ -32,7 +32,7 @@ public class Listeners implements ITestListener {
             }
         }
 
-        String screenshotName = result.getTestClass().getRealClass().getSimpleName() +"_"+ result.getMethod().getMethodName() + "_" + "line:" + line + "_" +timestamp + ".png";
+        String screenshotName = result.getTestClass().getRealClass().getSimpleName() +"_"+ result.getMethod().getMethodName() + "_" + "line_" + line + "_" + "Date_" +timestamp + ".png";
 
         String screenshotDir = System.getProperty("user.dir") + File.separator + "FailedTestScreenshot";
         File destDir = new File(screenshotDir);
