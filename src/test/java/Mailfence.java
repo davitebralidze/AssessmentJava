@@ -17,17 +17,19 @@ public class Mailfence extends BaseUtility {
         DummyFile dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
         dummyFile.createLoremIpsumFile();
 
-        LandingPage.clickOnSignInButton();
-        LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
-        LogInPage.waitForUserToBeLoggedIn();
-        MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
-        MessagesPage.clickOnNewMessageButton();
-        MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
-        InboxFolder.waitForTheMessageInInbox(subject);
-        InboxFolder.openTheMessage(subject);
-        InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
-        MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
-
-        dummyFile.deleteFile();
+        try {
+            LandingPage.clickOnSignInButton();
+            LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
+            LogInPage.waitForUserToBeLoggedIn();
+            MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
+            MessagesPage.clickOnNewMessageButton();
+            MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
+            InboxFolder.waitForTheMessageInInbox(subject);
+            InboxFolder.openTheMessage(subject);
+            InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
+            MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
+        } finally {
+            dummyFile.deleteFile();
+        }
     }
 }
