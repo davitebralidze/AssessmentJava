@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 allure-results
 FailedTestScreenshot
+test-output
 
 ### IntelliJ IDEA ###
 .idea

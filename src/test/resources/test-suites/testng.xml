@@ -1,10 +1,11 @@
 <suite name="Test Suite">
     <listeners>
         <listener class-name="Util.Listeners"/>
+        <listener class-name="org.testng.reporters.FailedReporter" />
     </listeners>
     <test name="DemoTest">
         <classes>
-            <class name="Mailfence"/>
+            <class name="MailfenceTest"/>
         </classes>
     </test>
 </suite>
