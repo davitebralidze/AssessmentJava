@@ -30,5 +30,4 @@ public class MailfenceTest extends BaseUtility {
             dummyFile.deleteFile();
         }
     }
-
 }
