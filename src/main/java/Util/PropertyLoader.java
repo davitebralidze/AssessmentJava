@@ -28,7 +28,7 @@ public class PropertyLoader {
     }
 
     public static String getProperty(String propertyName) {
-        return properties.getProperty(propertyName);
+        return System.getProperty(propertyName, properties.getProperty(propertyName));
     }
 
 }
