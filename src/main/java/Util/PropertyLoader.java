@@ -31,4 +31,8 @@ public class PropertyLoader {
         return System.getProperty(propertyName, properties.getProperty(propertyName));
     }
 
+    public static void setProperty(String propertyName, String newValue) {
+        properties.setProperty(propertyName, newValue);
+    }
+
 }
