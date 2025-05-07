@@ -24,7 +24,6 @@ public class BaseUtility {
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         getDriver().get(PropertyLoader.getProperty("url.base"));
-        getDriver().get("https://mailfence.com/");
     }
 
     @AfterMethod
