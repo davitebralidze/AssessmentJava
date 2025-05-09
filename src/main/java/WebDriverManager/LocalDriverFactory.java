@@ -6,7 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class LocalDriverFactory implements DriverFactory {
+public class LocalDriverFactory implements IDriverFactory {
     private final String browser;
 
     public LocalDriverFactory(String browser) {

@@ -2,6 +2,6 @@ package WebDriverManager;
 
 import org.openqa.selenium.WebDriver;
 
-public interface DriverFactory {
+public interface IDriverFactory {
     WebDriver createDriver();
 }

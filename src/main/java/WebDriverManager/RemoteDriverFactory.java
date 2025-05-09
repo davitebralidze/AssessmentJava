@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RemoteDriverFactory implements DriverFactory {
+public class RemoteDriverFactory implements IDriverFactory {
     private final String browser;
     private final String gridOS;
     private final String remoteURL;
