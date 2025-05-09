@@ -31,8 +31,6 @@ public class BaseElement {
         return getDriver().findElement(locator);
     }
 
-    //Add wait for element separately
-
     public void click() {
         getElement().click();
     }
