@@ -33,37 +33,76 @@ public class WebDriverManager {
 
     public static void setBrowserWindowResolution(int width, int height) { getDriver().manage().window().setSize(new Dimension(width, height)); }
 
-    /**
-     * Switches to the window at the specified 1-based index.
-     *
-     * @param index The 1-based index of the window to switch to. Index starts at 1.
-     * @throws IllegalArgumentException if the index is out of bounds of the open windows.
-     */
+    public static String saveTheCurrentBrowserTabId() {
+        return getDriver().getWindowHandle();
+    }
+
     public static void switchToBrowserTabByIndex(int index) {
         Set<String> allWindowHandles = getDriver().getWindowHandles();
         List<String> windowList = new ArrayList<>(allWindowHandles);
 
         if (index >= 1 && index <= windowList.size()) {
-            getDriver().switchTo().window(windowList.get(index - 1));
+            getDriver().switchTo().window(windowList.get(index));
         } else {
             throw new InvalidArgumentException("Invalid window index: " + index + ". Total open windows: " + windowList.size());
         }
     }
 
+    public static void moveToBrowserTabByID(String windowHandle) {
+        getDriver().switchTo().window(windowHandle);
+    }
+
+    public static void switchToNextBrowserTab() {
+        Set<String> windowHandles = getDriver().getWindowHandles();
+        List<String> windowList = new ArrayList<>(windowHandles);
+
+        String currentHandle = getDriver().getWindowHandle();
+        int currentIndex = windowList.indexOf(currentHandle);
+
+        if (currentIndex == windowList.size() - 1) {
+            throw new IndexOutOfBoundsException("Already on the last tab. Cannot switch to next.");
+        }
+
+        int nextIndex = currentIndex + 1;
+        getDriver().switchTo().window(windowList.get(nextIndex));
+    }
+
+    public static void switchToPreviousBrowserTab() {
+        Set<String> windowHandles = getDriver().getWindowHandles();
+        List<String> windowList = new ArrayList<>(windowHandles);
+
+        String currentHandle = getDriver().getWindowHandle();
+        int currentIndex = windowList.indexOf(currentHandle);
+
+        if (currentIndex == 0) {
+            throw new IndexOutOfBoundsException("Already on the first tab. Cannot switch to previous.");
+        }
+
+        int previousIndex = currentIndex - 1;
+        getDriver().switchTo().window(windowList.get(previousIndex));
+    }
+
+    public static void moveToFirstBrowserTab() {
+        switchToBrowserTabByIndex(0);
+    }
+
+    public static void moveToLastBrowserTab() {
+        Set<String> handles = getDriver().getWindowHandles();
+        List<String> handleList = new ArrayList<>(handles);
+        if (handleList.isEmpty()) {
+            throw new IllegalStateException("No browser tabs open.");
+        }
+        getDriver().switchTo().window(handleList.getLast());
+    }
+
     public static void closeCurrentBrowserTab() { getDriver().close(); }
 
-    /**
-     * Closes the window at the specified 1-based index.
-     *
-     * @param index The 1-based index of the window/tab to close. Index starts at 1.
-     * @throws IllegalArgumentException if the index is out of bounds of the open windows.
-     */
     public static void closeBrowserTabByIndex(int index) {
         Set<String> windowHandles = getDriver().getWindowHandles();
         List<String> windowList = new ArrayList<>(windowHandles);
 
-        if (index >= 1 && index <= windowList.size()) {
-            getDriver().switchTo().window(windowList.get(index - 1));
+        if (index >= 0 && index <= windowList.size()) {
+            getDriver().switchTo().window(windowList.get(index));
             getDriver().close();
         } else {
             throw new IllegalArgumentException("Invalid window index: " + index + ". Total open windows: " + windowList.size());
@@ -75,5 +114,10 @@ public class WebDriverManager {
     @Attachment(value = "Screenshot", type = "image/png")
     public static byte[] takeScreenshot() {
         return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Attachment(value = "Element Screenshot", type = "image/png")
+    public static byte[] takeElementScreenshot(WebElement element) {
+        return element.getScreenshotAs(OutputType.BYTES);
     }
 }

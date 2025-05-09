@@ -4,6 +4,7 @@ import Pages.LoginPage.LogInPage;
 import Pages.MessagesPage.InboxFolder;
 import Pages.MessagesPage.MessagesPage;
 import Util.BaseUtility;
+import Util.CustomAssertions;
 import Util.DummyFile;
 import Util.PropertyLoader;
 import com.github.javafaker.Faker;
