@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <suiteFile>testng.xml</suiteFile>
+
         <!-- Versions of the dependencies -->
         <selenium.java.version>4.25.0</selenium.java.version>
         <webdriver.manager.version>5.9.2</webdriver.manager.version>
@@ -18,7 +20,6 @@
         <itextpdf.version>9.1.0</itextpdf.version>
         <apache-poi.version>5.4.0</apache-poi.version>
         <dotenv.version>5.2.2</dotenv.version>
-        <suiteFile>testng.xml</suiteFile>
 
         <!-- Plugin versions -->
         <maven.compiler.version>3.12.1</maven.compiler.version>

@@ -112,12 +112,12 @@ public class WebDriverManager {
     public static void setImplicitWait(int waitDurationInSeconds) { getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(waitDurationInSeconds)); }
 
     @Attachment(value = "Screenshot", type = "image/png")
-    public static byte[] takeScreenshot() {
+    public static byte[] takeScreenshotForAllure() {
         return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Attachment(value = "Element Screenshot", type = "image/png")
-    public static byte[] takeElementScreenshot(WebElement element) {
+    public static byte[] takeElementScreenshotForAllure(WebElement element) {
         return element.getScreenshotAs(OutputType.BYTES);
     }
 }
