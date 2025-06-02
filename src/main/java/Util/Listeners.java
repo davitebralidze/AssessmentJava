@@ -17,6 +17,8 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
+        TestStatus.testPassed.set(false);
+
         File src = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
 
@@ -47,5 +49,10 @@ public class Listeners implements ITestListener {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        TestStatus.testPassed.set(true);
     }
 }
