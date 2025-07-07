@@ -7,34 +7,26 @@ import Util.*;
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
 
-import static WebDriverManager.WebDriverManager.getDriver;
-
-public class MailfenceTest
-//        extends BaseUtility
-{
+public class MailfenceTest extends BaseUtility {
 
     @Test
     public void uploadFile() {
-//        String subject = Faker.instance().lorem().characters(10);
-//        DummyFile dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
-//        dummyFile.createLoremIpsumFile();
-//        try {
-//            LandingPage.clickOnSignInButton();
-//            LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
-//            LogInPage.waitForUserToBeLoggedIn();
-//            MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
-//            MessagesPage.clickOnNewMessageButton();
-//            MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
-//            InboxFolder.waitForTheMessageInInbox(subject);
-//            InboxFolder.openTheMessage(subject);
-//            InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
-//            MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
-//        } finally {
-//            dummyFile.deleteFile();
-//        }
-        getDriver().get("https://qaplayground.dev/");
-        getDriver().manage().window().maximize();
-        Utils.captureFullPageScreenshot("full-screenshot.png");
-        getDriver().quit();
+        String subject = Faker.instance().lorem().characters(10);
+        DummyFile dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
+        dummyFile.createLoremIpsumFile();
+        try {
+            LandingPage.clickOnSignInButton();
+            LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
+            LogInPage.waitForUserToBeLoggedIn();
+            MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
+            MessagesPage.clickOnNewMessageButton();
+            MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
+            InboxFolder.waitForTheMessageInInbox(subject);
+            InboxFolder.openTheMessage(subject);
+            InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
+            MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
+        } finally {
+            dummyFile.deleteFile();
+        }
     }
 }
