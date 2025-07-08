@@ -14,8 +14,7 @@ public class WebDriverManager {
 
     public static WebDriver getDriver() {
         if (tlDriver.get() == null) {
-            WebDriver driver = WebDriverFactory.createDriver();
-            tlDriver.set(driver);
+            tlDriver.set(WebDriverFactory.createDriver());
         }
         return tlDriver.get();
     }
