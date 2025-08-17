@@ -3,7 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 allure-results
-FailedTestScreenshot
+FailedTestReports
 test-output
 
 ### IntelliJ IDEA ###
