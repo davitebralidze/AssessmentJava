@@ -17,28 +17,26 @@ public class MailfenceTest extends BaseUtility {
 
     @Test
     public void uploadFile() {
-//        String subject = Faker.instance().lorem().characters(10);
-//        dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
-//        dummyFile.createLoremIpsumFile();
-//
-//        LandingPage.clickOnSignInButton();
-//        LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
-//        LogInPage.waitForUserToBeLoggedIn();
-//        MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
-//        MessagesPage.clickOnNewMessageButton();
-//        MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
-//        InboxFolder.waitForTheMessageInInbox(subject);
-//        InboxFolder.openTheMessage(subject);
-//        InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
-//        MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
+        String subject = Faker.instance().lorem().characters(10);
+        dummyFile = new DummyFile(subject, DummyFile.FileFormat.PDF);
+        dummyFile.createLoremIpsumFile();
 
-        throw new NoSuchElementException();
+        LandingPage.clickOnSignInButton();
+        LogInPage.logIn(PropertyLoader.getProperty("userEmail"), PropertyLoader.getProperty("password"));
+        LogInPage.waitForUserToBeLoggedIn();
+        MessagesPage.navigateTo(HeaderBar.Pages.MESSAGES);
+        MessagesPage.clickOnNewMessageButton();
+        MessagesPage.sendEmail(PropertyLoader.getProperty("userEmail"), subject, dummyFile.getFilePath());
+        InboxFolder.waitForTheMessageInInbox(subject);
+        InboxFolder.openTheMessage(subject);
+        InboxFolder.saveTheAttachmentOfTheOpenedMessageInDocuments(dummyFile.getFileName());
+        MessagesPage.navigateTo(HeaderBar.Pages.DOCUMENTS);
     }
 
-//    @AfterMethod
-//    public void deleteDummyFile(Method method) {
-//        if (method.getName().equals("uploadFile")) {
-//            dummyFile.deleteFile();
-//        }
-//    }
+    @AfterMethod
+    public void deleteDummyFile(Method method) {
+        if (method.getName().equals("uploadFile")) {
+            dummyFile.deleteFile();
+        }
+    }
 }
