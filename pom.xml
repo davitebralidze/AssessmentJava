@@ -118,4 +118,16 @@
         </plugins>
     </build>
 
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>qa</id>-->
+<!--            <build>-->
+<!--                <finalName>${artifactId}-qa</finalName>-->
+<!--                <filters>-->
+<!--                    <filter>src/test/resources/env-properties/qa-env.properties</filter>-->
+<!--                </filters>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
+
 </project>
