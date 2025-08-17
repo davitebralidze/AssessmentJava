@@ -7,7 +7,9 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -34,22 +36,38 @@ public class Listeners implements ITestListener {
             }
         }
 
-        String screenshotName = result.getTestClass().getRealClass().getSimpleName() +"_"+ result.getMethod().getMethodName() + "_" + "line:" + line + "_" +timestamp + ".png";
+        String baseName = expectedClass + "_" + expectedMethod + "_line" + line;
+        String screenshotName = baseName + ".png";
+        String stackTraceName = baseName + "_StackTrace.txt";
 
-        String screenshotDir = System.getProperty("user.dir") + File.separator + "FailedTestScreenshot";
-        File destDir = new File(screenshotDir);
+        String reportDir = System.getProperty("user.dir") + File.separator + "FailedTestReports"
+                + File.separator + timestamp;
+        File destDir = new File(reportDir);
         if (!destDir.exists()) {
             destDir.mkdirs();
         }
 
-        File dest = new File(destDir, screenshotName);
+        File destScreenshot = new File(destDir, screenshotName);
         try {
-            FileUtils.copyFile(src, dest);
+            FileUtils.copyFile(src, destScreenshot);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
+        File destStackTrace = new File(destDir, stackTraceName);
+        try (PrintWriter pw = new PrintWriter(new FileWriter(destStackTrace))) {
+            pw.println("Exception Message:");
+            pw.println(result.getThrowable().toString());
+            pw.println();
+            pw.println("Full Stack Trace:");
+            result.getThrowable().printStackTrace(pw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        result.setStatus(ITestResult.FAILURE);
     }
+
 
     @Override
     public void onTestSuccess(ITestResult result) {

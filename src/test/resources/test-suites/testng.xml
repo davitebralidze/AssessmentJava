@@ -4,6 +4,7 @@
         <listener class-name="org.testng.reporters.FailedReporter" />
     </listeners>
     <test name="DemoTest">
+<!--        <parameter name="browser" value="chrome"/>-->
         <classes>
             <class name="MailfenceTest"/>
         </classes>
