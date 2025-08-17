@@ -9,7 +9,7 @@ import java.time.Duration;
 
 import static WebDriverManager.WebDriverManager.getDriver;
 
-public class BaseElement {
+public sealed class BaseElement permits ButtonElement, CheckboxElement, InputElement {
 
     By locator;
     String elementName;
